@@ -1,9 +1,10 @@
 package controllers
 
 import (
-	"mobile-store-backend/models"
-	"mobile-store-backend/utils"
 	"net/http"
+
+	"github.com/Sid9pore/mobile-store/backend/models"
+	"github.com/Sid9pore/mobile-store/backend/utils"
 
 	"github.com/gin-gonic/gin"
 	"golang.org/x/crypto/bcrypt"

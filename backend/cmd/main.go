@@ -3,8 +3,9 @@ package main
 import (
 	"fmt"
 	"log"
-	"mobile-store-backend/config"
-	"mobile-store-backend/routes"
+
+	"github.com/Sid9pore/mobile-store/backend/config"
+	"github.com/Sid9pore/mobile-store/backend/routes"
 
 	"github.com/gin-gonic/gin"
 )

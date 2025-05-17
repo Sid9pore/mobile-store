@@ -1,4 +1,4 @@
-module mobile-store
+module github.com/Sid9pore/mobile-store
 
 go 1.23.0
 

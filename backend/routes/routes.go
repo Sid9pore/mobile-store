@@ -1,9 +1,9 @@
 package routes
 
 import (
-	"mobile-store-backend/controllers"
-	"mobile-store-backend/middleware"
-	"mobile-store-backend/models"
+	"github.com/Sid9pore/mobile-store/backend/controllers"
+	"github.com/Sid9pore/mobile-store/backend/middleware"
+	"github.com/Sid9pore/mobile-store/backend/models"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/driver/postgres"

@@ -26,7 +26,7 @@ type Config struct {
 var AppConfig Config
 
 func LoadConfig() {
-	f, err := os.ReadFile("config/config.yaml")
+	f, err := os.ReadFile("C:\Users\sid9p\Desktop\temp\interview project\mobile app store\mobile-store\backend\config\config.yaml")
 	if err != nil {
 		log.Fatalf("Failed to read config: %v", err)
 	}

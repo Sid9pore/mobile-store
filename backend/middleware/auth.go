@@ -1,9 +1,10 @@
 package middleware
 
 import (
-	"mobile-store-backend/config"
 	"net/http"
 	"strings"
+
+	"github.com/Sid9pore/mobile-store/backend/config"
 
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt/v4"

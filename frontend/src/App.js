@@ -1,19 +1,23 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import AdminHome from './pages/AdminHome';
 import CustomerHome from './pages/CustomerHome';
-import Header from './components/Header';
 
 function App() {
-  const { token, role } = useSelector((state) => state.auth);
-  if (!token) return <Login />;
   return (
-    <div>
-      <Header />
-      {role === 'admin' ? <AdminHome /> : <CustomerHome />}
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/admin" element={<AdminHome />} />
+        <Route path="/customer" element={<CustomerHome />} />
+        <Route path="*" element={<div className="p-6 text-red-600 text-xl">404 - Page Not Found</div>} />
+      </Routes>
+    </Router>
   );
 }
+
 export default App;

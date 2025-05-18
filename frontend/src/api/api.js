@@ -50,3 +50,29 @@ export const deleteProduct = async (productId, token) => {
   });
   return response.data;
 };
+
+export const deleteUser = async (id) => {
+  const response = await fetch(`http://yourbackendapi.com/users/${id}`, {
+    method: 'DELETE',
+  });
+  if (!response.ok) {
+    throw new Error('Failed to delete user');
+  }
+  return response.json();
+};
+
+export const getAllProducts = async () => {
+  const response = await fetch('http://yourbackendapi.com/products'); // replace with your API URL
+  if (!response.ok) {
+    throw new Error('Failed to fetch products');
+  }
+  return response.json();
+};
+
+export const getAllUsers = async () => {
+  const response = await fetch('http://yourbackendapi.com/users'); // Replace with your real API URL
+  if (!response.ok) {
+    throw new Error('Failed to fetch users');
+  }
+  return response.json();
+};

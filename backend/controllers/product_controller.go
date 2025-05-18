@@ -1,9 +1,10 @@
 package controllers
 
 import (
-	"mobile-store-backend/models"
 	"net/http"
 	"strconv"
+
+	"github.com/Sid9pore/mobile-store/backend/models"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"

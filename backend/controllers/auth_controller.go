@@ -38,7 +38,7 @@ func Login(db *gorm.DB) gin.HandlerFunc {
 			c.JSON(http.StatusUnauthorized, gin.H{"error": "invalid credentials"})
 			return
 		}
-		token, _ := utils.GenerateJWT(user.ID, user.Role)
+		token, _ := utils.GenerateJWT(user.ID, user.Password,user.Role)
 		c.JSON(http.StatusOK, gin.H{"token": token})
 	}
 }

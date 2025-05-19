@@ -28,33 +28,56 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow-md w-full max-w-sm">
-        <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
-        {error && <p className="text-red-500 text-sm mb-2">{error}</p>}
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="w-full p-2 mb-4 border border-gray-300 rounded"
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="w-full p-2 mb-4 border border-gray-300 rounded"
-          required
-        />
-        <button
-          type="submit"
-          className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
-        >
-          Login
-        </button>
-      </form>
+    <div className="auth-container">
+      {/* Background and overlay */}
+      <div
+        className="auth-background"
+        style={{
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1920&q=80')",
+        }}
+      />
+      <div className="auth-overlay" />
+
+      {/* Logo */}
+      <div className="auth-logo">📱 MobileMart</div>
+
+      {/* Form container */}
+      <div className="auth-form-wrapper">
+        <form onSubmit={handleSubmit} className="auth-form">
+          <h2 className="auth-title">Login</h2>
+          {error && <p className="auth-error">{error}</p>}
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="auth-input"
+            required
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="auth-input"
+            required
+          />
+          <button type="submit" className="auth-submit-button">
+            Login
+          </button>
+          <p className="auth-footer-text">
+            Don't have an account?{' '}
+            <button
+              type="button"
+              className="auth-link-button"
+              onClick={() => navigate('/signup')}
+            >
+              Sign Up
+            </button>
+          </p>
+        </form>
+      </div>
     </div>
   );
 };

@@ -170,3 +170,226 @@ body, html, #root {
 .signup-footer-text a:hover {
   text-decoration: underline;
 }
+
+.auth-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Background image */
+.auth-background {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+/* Dark overlay */
+.auth-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+/* Logo top-left */
+.auth-logo {
+  position: absolute;
+  top: 20px;
+  left: 32px;
+  z-index: 10;
+  color: white;
+  font-size: 2rem;
+  font-weight: 800;
+  text-shadow: 0 0 8px rgba(0,0,0,0.7);
+  user-select: none;
+}
+
+/* Form wrapper centered */
+.auth-form-wrapper {
+  position: relative;
+  z-index: 10;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+/* Form container */
+.auth-form {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  padding: 32px;
+  width: 100%;
+  max-width: 400px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Title */
+.auth-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #6b21a8; /* purple */
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+/* Error message */
+.auth-error {
+  color: #dc2626; /* red */
+  font-size: 0.875rem;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+/* Inputs */
+.auth-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d1d5db; /* gray-300 */
+  border-radius: 8px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  margin-bottom: 16px;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.auth-input:focus {
+  border-color: #a78bfa; /* purple-400 */
+  box-shadow: 0 0 8px rgba(167, 139, 250, 0.7);
+}
+
+/* Submit button */
+.auth-submit-button {
+  width: 100%;
+  background-color: #6b21a8; /* purple */
+  color: white;
+  font-weight: 700;
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.125rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 12px;
+}
+
+.auth-submit-button:hover {
+  background-color: #581c87; /* darker purple */
+}
+
+/* Footer text */
+.auth-footer-text {
+  font-size: 0.875rem;
+  color: #6b7280; /* gray-500 */
+  text-align: center;
+  user-select: none;
+}
+
+/* Footer link button */
+.auth-link-button {
+  background: none;
+  border: none;
+  color: #7c3aed; /* purple */
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 4px;
+  text-decoration: underline;
+  font-size: 0.875rem;
+}
+
+.auth-link-button:hover {
+  color: #5b21b6;
+  text-decoration: none;
+}
+
+.customer-home {
+  position: relative;
+  min-height: 100vh;
+  padding: 40px 20px;
+  background-image: url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* dark overlay */
+  z-index: 0;
+}
+
+.content-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.error-message {
+  color: #ff6b6b;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.product-card {
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #333;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.product-name {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.product-description {
+  font-size: 1rem;
+  margin-bottom: 15px;
+  color: #555;
+}
+
+.product-price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #1a202c;
+}

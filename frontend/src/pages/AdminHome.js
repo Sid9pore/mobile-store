@@ -29,36 +29,42 @@ const AdminHome = () => {
   };
 
   return (
-    <div className="min-h-screen p-6 bg-gray-100">
-      <h1 className="text-3xl font-bold mb-4">Admin Dashboard</h1>
-      {error && <p className="text-red-500 mb-4">{error}</p>}
-      <table className="min-w-full bg-white shadow-md rounded">
-        <thead>
-          <tr>
-            <th className="py-2 px-4 border-b">Name</th>
-            <th className="py-2 px-4 border-b">Email</th>
-            <th className="py-2 px-4 border-b">Role</th>
-            <th className="py-2 px-4 border-b">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user) => (
-            <tr key={user.id}>
-              <td className="py-2 px-4 border-b">{user.name}</td>
-              <td className="py-2 px-4 border-b">{user.email}</td>
-              <td className="py-2 px-4 border-b">{user.role}</td>
-              <td className="py-2 px-4 border-b">
-                <button
-                  onClick={() => handleDelete(user.id)}
-                  className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
-                >
-                  Delete
-                </button>
-              </td>
+    <div className="admin-home">
+      <div className="overlay"></div>
+
+      <div className="content-container">
+        <h1 className="page-title">Admin Dashboard</h1>
+        {error && <p className="error-message">{error}</p>}
+
+        <table className="users-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+
+          <tbody>
+            {users.map((user) => (
+              <tr key={user.id}>
+                <td>{user.name}</td>
+                <td>{user.email}</td>
+                <td>{user.role}</td>
+                <td>
+                  <button
+                    onClick={() => handleDelete(user.id)}
+                    className="delete-btn"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

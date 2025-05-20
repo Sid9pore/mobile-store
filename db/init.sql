@@ -1,6 +1,10 @@
--- Create users table
+-- Create sequnce 
+CREATE SEQUENCE user_id_seq START 1 INCREMENT 1;
+
+--Create user table
+
 CREATE TABLE IF NOT EXISTS users (
-    id SERIAL PRIMARY KEY,
+    id INTEGER PRIMARY KEY DEFAULT nextval('user_id_seq'),
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     role VARCHAR(20) NOT NULL CHECK (role IN ('admin', 'customer')),

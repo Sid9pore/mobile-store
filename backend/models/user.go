@@ -5,5 +5,5 @@ type User struct {
 	Email    string `gorm:"unique;not null" json:"email"`
 	Password string `json:"-"`
 	Role     string `json:"role"` // admin or customer
-	Products []Product
+	//Products []Product
 }

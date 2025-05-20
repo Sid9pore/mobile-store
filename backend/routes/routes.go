@@ -11,7 +11,7 @@ import (
 )
 
 func RegisterRoutes(r *gin.Engine) {
-	dsn := "host=localhost user=postgres password=postgres dbname=mobile_store port=5432 sslmode=disable"
+	dsn := "host=localhost user=admin password=myNewP@ssw0rd dbname=mobileAppStore port=8084 sslmode=disable"
 	db, _ := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	db.AutoMigrate(&models.User{}, &models.Product{})
 

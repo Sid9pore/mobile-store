@@ -1,9 +1,9 @@
 db:
   host: localhost
-  port: 5432
-  user: postgres
-  password: postgres
-  name: mobile_store
+  port: 8084
+  user: admin
+  password: myNewP@ssw0rd
+  name: mobileAppStore
 jwt:
   secret: supersecretkey
 server:

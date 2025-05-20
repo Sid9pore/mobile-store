@@ -1,9 +1,12 @@
 package routes
 
 import (
+	"time"
+
 	"github.com/Sid9pore/mobile-store/backend/controllers"
 	"github.com/Sid9pore/mobile-store/backend/middleware"
 	"github.com/Sid9pore/mobile-store/backend/models"
+	"github.com/gin-contrib/cors"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/driver/postgres"
@@ -11,6 +14,17 @@ import (
 )
 
 func RegisterRoutes(r *gin.Engine) {
+
+	// Enable CORS
+	r.Use(cors.New(cors.Config{
+		AllowOrigins:     []string{"http://localhost:3000"},
+		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+		AllowHeaders:     []string{"Origin", "Content-Type", "Authorization"},
+		ExposeHeaders:    []string{"Content-Length"},
+		AllowCredentials: true,
+		MaxAge:           12 * time.Hour,
+	}))
+
 	dsn := "host=localhost user=admin password=myNewP@ssw0rd dbname=mobileAppStore port=8084 sslmode=disable"
 	db, _ := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	db.AutoMigrate(&models.User{}, &models.Product{})

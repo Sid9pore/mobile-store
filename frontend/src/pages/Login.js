@@ -16,8 +16,9 @@ const Login = () => {
     e.preventDefault();
     try {
       const data = await login(email, password);
+      console.log(data);
       dispatch(loginSuccess(data));
-      if (data.user.role === 'admin') {
+      if (data.role == 'admin') {
         navigate('/admin');
       } else {
         navigate('/customer');

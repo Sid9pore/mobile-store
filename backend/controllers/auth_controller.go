@@ -36,7 +36,7 @@ func Register(db *gorm.DB) gin.HandlerFunc {
 		}
 
 		// Success
-		c.JSON(http.StatusCreated, gin.H{"message": "User registered successfully"})
+		c.JSON(http.StatusCreated, gin.H{"message": "User registered successfully","role":user.Role})
 	}
 }
 

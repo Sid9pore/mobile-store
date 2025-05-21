@@ -19,8 +19,10 @@ const Signup = () => {
     e.preventDefault();
     try {
       const data = await signup(name, email, password, role);
+      console.log(name);
+      console.log(data);
       dispatch(loginSuccess(data));
-      navigate(data.user.role === 'admin' ? '/admin' : '/customer');
+      navigate(data.role === 'admin' ? '/admin' : '/customer');
     } catch (err) {
       setError('Signup failed. Please try again.');
     }
@@ -108,6 +110,7 @@ const Signup = () => {
         <button
           type="submit"
           className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 rounded-lg transition duration-300"
+          on
         >
           Sign Up
         </button>

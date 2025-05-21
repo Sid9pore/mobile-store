@@ -802,3 +802,191 @@ body, html, #root {
   font-weight: bold;
   color: blue;
 }
+
+.admin-home-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.logout-button {
+  background-color: #f44336;
+  border: none;
+  padding: 8px 14px;
+  color: white;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background-color: #d32f2f;
+}
+
+.create-product-section {
+  margin-bottom: 40px;
+}
+
+.new-product-form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.new-product-form input {
+  padding: 8px 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  flex: 1 1 150px;
+}
+
+.create-button {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.create-button:hover {
+  background-color: #388e3c;
+}
+
+.products-list h2 {
+  margin-bottom: 15px;
+}
+
+.product-card {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+  align-items: center;
+}
+
+.product-input {
+  flex: 1 1 200px;
+  padding: 8px 10px;
+  font-size: 14px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+}
+
+.product-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.submit-button {
+  background-color: #2196f3;
+  border: none;
+  color: white;
+  font-weight: bold;
+  padding: 8px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: #1976d2;
+}
+
+.delete-button {
+  background-color: #f44336;
+  border: none;
+  color: white;
+  font-weight: bold;
+  padding: 8px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: #d32f2f;
+}
+
+.error {
+  color: red;
+}
+
+.admin-home {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  position: relative;
+}
+
+.logout-button-container {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.content-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.page-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.create-product-form {
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.create-product-form input {
+  padding: 8px;
+  font-size: 14px;
+}
+
+.create-product-form button {
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.products-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.products-table th,
+.products-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.products-table input {
+  width: 100%;
+  padding: 4px;
+}
+
+.products-table button {
+  margin-right: 6px;
+  padding: 4px 8px;
+}
+
+.delete-btn {
+  background-color: red;
+  color: white;
+  border: none;
+  cursor: pointer;
+}

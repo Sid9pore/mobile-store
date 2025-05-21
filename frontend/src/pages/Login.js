@@ -19,7 +19,7 @@ const Login = () => {
       console.log(data);
       dispatch(loginSuccess(data));
       if (data.role == 'admin') {
-        navigate('/admin');
+        navigate('/admin/');
       } else {
         navigate('/customer');
       }

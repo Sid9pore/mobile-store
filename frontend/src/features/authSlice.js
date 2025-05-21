@@ -1,21 +1,25 @@
+// features/authSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  user: null,
-  token: null,
+  user: null, // { id, email, role, token, ... }
 };
 
-export const authSlice = createSlice({
+const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
     loginSuccess: (state, action) => {
-      state.user = action.payload.user;
-      state.token = action.payload.token;
+      // Save only if the user is admin
+      if (action.payload.role === 'admin') {
+        state.adminId = action.payload.id;
+        console.log(action);
+        sessionStorage.setItem('adminId', action.payload.id); // Persist adminId
+      }
     },
     logout: (state) => {
-      state.user = null;
-      state.token = null;
+      state.adminId = null;
+      sessionStorage.removeItem('adminId');
     },
   },
 });

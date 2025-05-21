@@ -11,6 +11,6 @@ type Product struct {
 	StockQuantity  int     `json:"stock_quantity"`
 	Rating         float64 `json:"rating"`
 	Price          float64 `json:"price"`
-	Image_URL      string  `json:"imageURL"`
+	ImageData      []byte  `json:"image_data" gorm:"type:bytea"`
 	CreatedByID    uint    `json:"created_by_id"`
 }

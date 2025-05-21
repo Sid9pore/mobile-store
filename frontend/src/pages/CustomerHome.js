@@ -21,6 +21,11 @@ const CustomerHome = () => {
 
   const closeModal = () => setSelectedProduct(null);
 
+   // Helper to convert base64 image
+  const getImageSrc = (base64) => {
+    return `data:image/jpeg;base64,${base64}`;
+  };
+
   return (
     <div className="customer-home">
       <div className="logout-button-container">
@@ -40,7 +45,7 @@ const CustomerHome = () => {
               onClick={() => setSelectedProduct(product)}
             >
               <img 
-                src={product.imageURL} 
+                src={getImageSrc(product.image_base64)}
                 alt={product.name} 
                 className="product-image"
                 onError={(e) => {

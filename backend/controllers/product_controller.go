@@ -100,3 +100,26 @@ func DeleteProduct(db *gorm.DB) gin.HandlerFunc {
 		c.JSON(http.StatusOK, gin.H{"message": "Product deleted successfully"})
 	}
 }
+
+func GetAdminProducts(db *gorm.DB) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		adminID := c.Param("adminId")
+		if adminID == "" {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "Missing admin ID in request path"})
+			return
+		}
+
+		var products []models.Product
+		if err := db.Where("created_by_id = ?", adminID).Find(&products).Error; err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to fetch products", "details": err.Error()})
+			return
+		}
+
+		if len(products) == 0 {
+			c.JSON(http.StatusNotFound, gin.H{"message": "No products found for the given admin ID"})
+			return
+		}
+
+		c.JSON(http.StatusOK, products)
+	}
+}

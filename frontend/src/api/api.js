@@ -17,19 +17,6 @@ export const signup = async (name, email, password, role) => {
   return response.data;
 };
 
-// 📦 Products
-export const fetchProducts = async () => {
-  const response = await api.get('/products');
-  return response.data;
-};
-
-export const fetchAdminProducts = async (token) => {
-  const response = await api.get('/admin/products', {
-    headers: { Authorization: `Bearer ${token}` },
-  });
-  return response.data;
-};
-
 export const createProduct = async (product, token) => {
   const response = await api.post('/products', product, {
     headers: { Authorization: `Bearer ${token}` },
@@ -51,28 +38,16 @@ export const deleteProduct = async (productId, token) => {
   return response.data;
 };
 
-export const deleteUser = async (id) => {
-  const response = await fetch(`http://yourbackendapi.com/users/${id}`, {
-    method: 'DELETE',
-  });
-  if (!response.ok) {
-    throw new Error('Failed to delete user');
-  }
-  return response.json();
-};
-
 export const getAllProducts = async () => {
-  const response = await fetch('http://localhost:8080/products'); // replace with your API URL
+  const response = await api.get('/products'); // replace with your API URL
   if (!response.ok) {
     throw new Error('Failed to fetch products');
   }
   return response.json();
 };
 
-export const getAllUsers = async () => {
-  const response = await fetch('http://yourbackendapi.com/users'); // Replace with your real API URL
-  if (!response.ok) {
-    throw new Error('Failed to fetch users');
-  }
-  return response.json();
+
+export const fetchAdminProducts = async (adminId) => {
+  const response = await api.get(`/admin/products/${adminId}`);
+  return response.data;
 };

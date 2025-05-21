@@ -8,16 +8,18 @@ const AdminHome = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const data = await getAllUsers();
-        setUsers(data);
-      } catch (err) {
-        setError('Failed to fetch users');
-      }
-    };
-    fetchUsers();
-  }, []);
+  const fetchProducts = async () => {
+    try {
+      console.log(data);
+      const products = await fetchAdminProducts(data.id);
+      setProducts(products);
+    } catch (err) {
+      setError('Failed to fetch products');
+    }
+  };
+
+  fetchProducts();
+}, []);
 
   const handleDelete = async (id) => {
     try {

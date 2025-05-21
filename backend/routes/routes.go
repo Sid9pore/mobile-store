@@ -4,7 +4,6 @@ import (
 	"time"
 
 	"github.com/Sid9pore/mobile-store/backend/controllers"
-	"github.com/Sid9pore/mobile-store/backend/middleware"
 	"github.com/Sid9pore/mobile-store/backend/models"
 	"github.com/gin-contrib/cors"
 
@@ -34,8 +33,11 @@ func RegisterRoutes(r *gin.Engine) {
 
 	r.GET("/products", controllers.GetAllProducts(db))
 
-	admin := r.Group("/admin").Use(middleware.AuthMiddleware("admin"))
-	admin.POST("/products", controllers.CreateProduct(db))
-	admin.PUT("/products/:id", controllers.UpdateProduct(db))
-	admin.DELETE("/products/:id", controllers.DeleteProduct(db))
+	admin := r.Group("/admin")
+	{
+		admin.GET("/products/:adminId", controllers.GetAdminProducts(db))
+		admin.POST("/products", controllers.CreateProduct(db))
+		admin.PUT("/products/:id", controllers.UpdateProduct(db))
+		admin.DELETE("/products/:id", controllers.DeleteProduct(db))
+	}
 }

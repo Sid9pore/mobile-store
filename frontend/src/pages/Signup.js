@@ -19,8 +19,6 @@ const Signup = () => {
     e.preventDefault();
     try {
       const data = await signup(name, email, password, role);
-      console.log(name);
-      console.log(data);
       dispatch(loginSuccess(data));
       navigate(data.role === 'admin' ? '/admin' : '/customer');
     } catch (err) {

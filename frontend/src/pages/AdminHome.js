@@ -106,30 +106,55 @@ const AdminHome = () => {
   };
 
   const handleUpdateProduct = async (id, product) => {
-    try {
-      const formData = new FormData();
-      Object.entries(product).forEach(([key, value]) => {
-        if (value && key !== "imageFile" && key !== "image_data") {
-          formData.append(key, value);
-        }
+  try {
+    // Helper: Convert file to base64
+    const toBase64 = (file) => {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+          const base64String = reader.result.split(",")[1]; // remove "data:image/...;base64,"
+          resolve(base64String);
+        };
+        reader.onerror = (error) => reject(error);
       });
+    };
 
-      if (product.imageFile) {
-        formData.append("image", product.imageFile);
-      }
-
-      const updated = await updateProduct(id, formData, token);
-      setProducts((prev) => prev.map((p) => (p.id === id ? updated : p)));
-    } catch (err) {
-      alert("Failed to update product");
+    let imageData = product.image_data || null;
+    if (product.imageFile) {
+      imageData = await toBase64(product.imageFile);
     }
-  };
+
+    const payload = {
+      name: product.name,
+      description: product.description,
+      brand: product.brand,
+      model_number: product.model_number,
+      specifications: product.specifications,
+      warranty: product.warranty,
+      stock_quantity: parseInt(product.stock_quantity || "0", 10),
+      rating: parseFloat(product.rating || "0"),
+      price: parseFloat(product.price),
+      created_by_id: parseFloat(adminId),
+      image_data: imageData,
+    };
+
+    console.log("Update payload:", payload);
+
+    const updated = await updateProduct(id, payload); // Assuming updateProduct accepts JSON
+    setProducts((prev) => prev.map((p) => (p.id === id ? updated : p)));
+  } catch (err) {
+    console.error("Failed to update product:", err);
+    alert("Failed to update product");
+  }
+};
+
 
   const handleDeleteProduct = async (id) => {
     if (!window.confirm("Are you sure you want to delete this product?"))
       return;
     try {
-      await deleteProduct(id, token);
+      await deleteProduct(id);
       setProducts((prev) => prev.filter((p) => p.id !== id));
       setSelectedProduct(null);
     } catch (err) {

@@ -18,15 +18,12 @@ func CreateProduct(db *gorm.DB) gin.HandlerFunc {
 			return
 		}
 
-		uid := c.GetUint("user_id")
-		product.CreatedByID = uid
-
 		if err := db.Create(&product).Error; err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create product", "details": err.Error()})
 			return
 		}
 
-		c.JSON(http.StatusCreated, gin.H{"message": "Product created successfully", "product": product})
+		c.JSON(http.StatusCreated, gin.H{"message": "Product created successfully"})
 	}
 }
 

@@ -17,24 +17,18 @@ export const signup = async (name, email, password, role) => {
   return response.data;
 };
 
-export const createProduct = async (product, token) => {
-  const response = await api.post('/products', product, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
+export const createProduct = async (product) => {
+  const response = await api.post('/admin/products', product);
   return response.data;
 };
 
 export const updateProduct = async (productId, product, token) => {
-  const response = await api.put(`/products/${productId}`, product, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
+  const response = await api.put(`/admin/products/${productId}`, product);
   return response.data;
 };
 
-export const deleteProduct = async (productId, token) => {
-  const response = await api.delete(`/products/${productId}`, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
+export const deleteProduct = async (productId) => {
+  const response = await api.delete(`/admin/products/${productId}`);
   return response.data;
 };
 

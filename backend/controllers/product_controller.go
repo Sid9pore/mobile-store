@@ -3,8 +3,10 @@ package controllers
 import (
 	"net/http"
 	"strconv"
+	"strings"
 
 	"github.com/Sid9pore/mobile-store/backend/models"
+	"github.com/Sid9pore/mobile-store/backend/utils"
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 )
@@ -12,6 +14,26 @@ import (
 func CreateProduct(db *gorm.DB) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var product models.Product
+
+		authHeader := c.GetHeader("Authorization")
+		if authHeader == "" {
+			c.JSON(http.StatusUnauthorized, gin.H{"error": "Missing Authorization header"})
+			return
+		}
+
+		// Parse the token
+		tokenStr := strings.TrimPrefix(authHeader, "Bearer ")
+		claims, err := utils.ValidateJWT(tokenStr)
+		if err != nil {
+			c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid token", "details": err.Error()})
+			return
+		}
+
+		// Optional: enforce admin role
+		if claims.Role != "admin" {
+			c.JSON(http.StatusForbidden, gin.H{"error": "Unauthorized: Admins only"})
+			return
+		}
 
 		if err := c.ShouldBindJSON(&product); err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid input", "details": err.Error()})
@@ -30,6 +52,25 @@ func CreateProduct(db *gorm.DB) gin.HandlerFunc {
 func GetAllProducts(db *gorm.DB) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var products []models.Product
+		authHeader := c.GetHeader("Authorization")
+		if authHeader == "" {
+			c.JSON(http.StatusUnauthorized, gin.H{"error": "Missing Authorization header"})
+			return
+		}
+
+		// Parse the token
+		tokenStr := strings.TrimPrefix(authHeader, "Bearer ")
+		claims, err := utils.ValidateJWT(tokenStr)
+		if err != nil {
+			c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid token", "details": err.Error()})
+			return
+		}
+
+		// Optional: enforce admin role
+		if claims.Role != "admin" {
+			c.JSON(http.StatusForbidden, gin.H{"error": "Unauthorized: Admins only"})
+			return
+		}
 		admin := c.Query("admin")
 
 		if admin != "" {
@@ -55,6 +96,25 @@ func GetAllProducts(db *gorm.DB) gin.HandlerFunc {
 
 func UpdateProduct(db *gorm.DB) gin.HandlerFunc {
 	return func(c *gin.Context) {
+		authHeader := c.GetHeader("Authorization")
+		if authHeader == "" {
+			c.JSON(http.StatusUnauthorized, gin.H{"error": "Missing Authorization header"})
+			return
+		}
+
+		// Parse the token
+		tokenStr := strings.TrimPrefix(authHeader, "Bearer ")
+		claims, err := utils.ValidateJWT(tokenStr)
+		if err != nil {
+			c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid token", "details": err.Error()})
+			return
+		}
+
+		// Optional: enforce admin role
+		if claims.Role != "admin" {
+			c.JSON(http.StatusForbidden, gin.H{"error": "Unauthorized: Admins only"})
+			return
+		}
 		id, err := strconv.Atoi(c.Param("id"))
 		if err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid product ID"})
@@ -83,6 +143,25 @@ func UpdateProduct(db *gorm.DB) gin.HandlerFunc {
 
 func DeleteProduct(db *gorm.DB) gin.HandlerFunc {
 	return func(c *gin.Context) {
+		authHeader := c.GetHeader("Authorization")
+		if authHeader == "" {
+			c.JSON(http.StatusUnauthorized, gin.H{"error": "Missing Authorization header"})
+			return
+		}
+
+		// Parse the token
+		tokenStr := strings.TrimPrefix(authHeader, "Bearer ")
+		claims, err := utils.ValidateJWT(tokenStr)
+		if err != nil {
+			c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid token", "details": err.Error()})
+			return
+		}
+
+		// Optional: enforce admin role
+		if claims.Role != "admin" {
+			c.JSON(http.StatusForbidden, gin.H{"error": "Unauthorized: Admins only"})
+			return
+		}
 		id, err := strconv.Atoi(c.Param("id"))
 		if err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid product ID"})
@@ -100,6 +179,25 @@ func DeleteProduct(db *gorm.DB) gin.HandlerFunc {
 
 func GetAdminProducts(db *gorm.DB) gin.HandlerFunc {
 	return func(c *gin.Context) {
+		authHeader := c.GetHeader("Authorization")
+		if authHeader == "" {
+			c.JSON(http.StatusUnauthorized, gin.H{"error": "Missing Authorization header"})
+			return
+		}
+
+		// Parse the token
+		tokenStr := strings.TrimPrefix(authHeader, "Bearer ")
+		claims, err := utils.ValidateJWT(tokenStr)
+		if err != nil {
+			c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid token", "details": err.Error()})
+			return
+		}
+
+		// Optional: enforce admin role
+		if claims.Role != "admin" {
+			c.JSON(http.StatusForbidden, gin.H{"error": "Unauthorized: Admins only"})
+			return
+		}
 		adminID := c.Param("adminId")
 		if adminID == "" {
 			c.JSON(http.StatusBadRequest, gin.H{"error": "Missing admin ID in request path"})

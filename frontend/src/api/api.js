@@ -17,19 +17,32 @@ export const signup = async (name, email, password, role) => {
   return response.data;
 };
 
-export const createProduct = async (product) => {
-  const response = await api.post('/admin/products', product);
+export const createProduct = async (product, token) => {
+  const response = await api.post('/admin/products', product, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   return response.data;
 };
+
 
 export const updateProduct = async (productId, product, token) => {
-  const response = await api.put(`/admin/products/${productId}`, product);
+  const response = await api.put(`/admin/products/${productId}`, product, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   return response.data;
 };
 
-export const deleteProduct = async (productId) => {
-  const response = await api.delete(`/admin/products/${productId}`);
-  return response.data;
+
+export const deleteProduct = async (productId, token) => {
+  const response = await api.delete(`/admin/products/${productId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 };
 
 export const getAllProducts = async () => {
@@ -41,7 +54,12 @@ export const getAllProducts = async () => {
 };
 
 
-export const fetchAdminProducts = async (adminId) => {
-  const response = await api.get(`/admin/products/${adminId}`);
+export const fetchAdminProducts = async (adminId, token) => {
+  const response = await api.get(`/admin/products/${adminId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   return response.data;
 };
+

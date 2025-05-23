@@ -26,12 +26,12 @@ const AdminHome = () => {
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [error, setError] = useState("");
-  const { adminId } = useSelector((state) => state.auth);
+  const { adminId ,token} = useSelector((state) => state.auth);
   const navigate = useNavigate();
 
   const fetchProducts = async () => {
     try {
-      const products = await fetchAdminProducts(adminId);
+      const products = await fetchAdminProducts(adminId,token);
       setProducts(products);
     } catch (err) {
       setError("Failed to fetch products");
@@ -67,6 +67,7 @@ const AdminHome = () => {
         imageData = await toBase64(newProduct.imageFile);
       }
       console.log(adminId);
+      console.log(token);
 
       const payload = {
         name: newProduct.name,
@@ -81,9 +82,11 @@ const AdminHome = () => {
         created_by_id: parseFloat(adminId),
         image_data: imageData,
       };
+      console.log(token);
       console.log(payload);
+      console.log(token);
 
-      await createProduct(payload); // raw JSON post
+      await createProduct(payload,token); // raw JSON post
       await fetchProducts(); // Refresh product list
 
       // Reset form
@@ -140,8 +143,9 @@ const AdminHome = () => {
     };
 
     console.log("Update payload:", payload);
+    console.log(token);
 
-    const updated = await updateProduct(id, payload); // Assuming updateProduct accepts JSON
+    const updated = await updateProduct(id, payload,token); // Assuming updateProduct accepts JSON
     setProducts((prev) => prev.map((p) => (p.id === id ? updated : p)));
   } catch (err) {
     console.error("Failed to update product:", err);
@@ -154,7 +158,7 @@ const AdminHome = () => {
     if (!window.confirm("Are you sure you want to delete this product?"))
       return;
     try {
-      await deleteProduct(id);
+      await deleteProduct(id,token);
       setProducts((prev) => prev.filter((p) => p.id !== id));
       setSelectedProduct(null);
     } catch (err) {

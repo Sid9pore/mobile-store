@@ -46,11 +46,9 @@ export const deleteProduct = async (productId, token) => {
 };
 
 export const getAllProducts = async () => {
-  const response = await api.get('/products'); // replace with your API URL
-  if (!response.ok) {
-    throw new Error('Failed to fetch products');
-  }
-  return response.json();
+  const response = await api.get('/products');// replace with your API URL
+  console.log(response.data);
+  return response.data;
 };
 
 

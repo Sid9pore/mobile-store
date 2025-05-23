@@ -52,25 +52,6 @@ func CreateProduct(db *gorm.DB) gin.HandlerFunc {
 func GetAllProducts(db *gorm.DB) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var products []models.Product
-		authHeader := c.GetHeader("Authorization")
-		if authHeader == "" {
-			c.JSON(http.StatusUnauthorized, gin.H{"error": "Missing Authorization header"})
-			return
-		}
-
-		// Parse the token
-		tokenStr := strings.TrimPrefix(authHeader, "Bearer ")
-		claims, err := utils.ValidateJWT(tokenStr)
-		if err != nil {
-			c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid token", "details": err.Error()})
-			return
-		}
-
-		// Optional: enforce admin role
-		if claims.Role != "admin" {
-			c.JSON(http.StatusForbidden, gin.H{"error": "Unauthorized: Admins only"})
-			return
-		}
 		admin := c.Query("admin")
 
 		if admin != "" {

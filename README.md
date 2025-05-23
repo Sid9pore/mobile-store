@@ -101,3 +101,9 @@ DELETE	/admin/products/{id}	Delete a product
 📧 Contact
 Author: Sid9pore
 📫 Email: sid9pore@example.com (replace with actual contact)
+
+ScreenShots of the project 
+![My Image](images/login.png)
+![My Image](images/signup.png)
+![My Image](images/AdminHome.png)
+![My Image](images/CustomerHome.png)
